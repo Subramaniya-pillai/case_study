@@ -1,6 +1,6 @@
 # Case Study: Azure → Snowflake with Snowpark → Power BI
 
-## 📘 Scenario
+##  Scenario
 
 You’re the **data engineer** at *ItTechGenie Retail*.  
 Each month, the sales team uploads new CSV files containing sales data to an **Azure Storage Container**.  
@@ -13,7 +13,7 @@ Your job is to automate the following data pipeline:
 
 ---
 
-## ⚙️ Step 1: Upload CSV to Azure Storage
+##  Step 1: Upload CSV to Azure Storage
 
 The sales team drops the `sales.csv` file into the following container:
 
@@ -27,7 +27,7 @@ You verified the upload from the **Azure Portal** under *Storage Accounts → Co
 
 ---
 
-## ❄️ Step 2: Connect Azure Storage to Snowflake
+##  Step 2: Connect Azure Storage to Snowflake
 
 In **Snowflake**, you set up a **Storage Integration** and a **Stage** to connect directly to the Azure container.
 
@@ -39,14 +39,14 @@ CREATE OR REPLACE STORAGE INTEGRATION azure_int
 TYPE = EXTERNAL_STAGE
 STORAGE_PROVIDER = AZURE
 ENABLED = TRUE
-AZURE_TENANT_ID = '7540734b-e567-46c3-9ad3-ec9fb9e50140'
+AZURE_TENANT_ID = 'your tenant id'
 STORAGE_ALLOWED_LOCATIONS = ('azure://manistorage21.blob.core.windows.net/manicontainer/');
 
 -- Step 2: Create External Stage
 CREATE OR REPLACE STAGE azure_stage_sas
 URL = 'azure://manistorage21.blob.core.windows.net/manicontainer/'
 CREDENTIALS = (
-    AZURE_SAS_TOKEN = '?sv=2024-11-04&ss=bfqt&srt=co&sp=rwdlacupiytfx&se=2025-10-22T17:52:12Z&st=2025-10-22T09:37:12Z&spr=https&sig=q1414lDZUsbs4Sp0DZ4MZUBES95nuKeJDz5HEnr54g0%3D'
+    AZURE_SAS_TOKEN = 'your token'
 )
 FILE_FORMAT = (TYPE = CSV FIELD_DELIMITER = ',' SKIP_HEADER = 1);
 
@@ -59,11 +59,11 @@ DESCRIBE TABLE SALES_DATA_TRANSFORMED;
 SELECT COUNT(*) FROM SALES_DATA_TRANSFORMED;
 ```
 
-✅ *This confirms that Snowflake can access your Azure files directly using the SAS token.*
+ *This confirms that Snowflake can access your Azure files directly using the SAS token.*
 
 ---
 
-## 🧠 Step 3: Transform Data using Snowpark in Databricks
+##  Step 3: Transform Data using Snowpark in Databricks
 
 Next, you used **Databricks** as the compute engine to interact with Snowflake using **Snowpark for Python**.
 
@@ -82,7 +82,7 @@ from snowflake.snowpark import Session
 connection_parameters = {
     "account": "dd58593.central-india.azure",
     "user": "vineeth21",
-    "password": "Subramaniyapillai1246",
+    "password": "your_password",
     "role": "ACCOUNTADMIN",
     "warehouse": "COMPUTE_WH",
     "database": "HEXAWARE",
@@ -152,13 +152,13 @@ df_transformed.print_schema()
 ```python
 df_transformed.write.save_as_table("SALES_DATA_TRANSFORMED")
 
-print("✅ Data successfully loaded to Snowflake table: SALES_DATA_TRANSFORMED")
+print(" Data successfully loaded to Snowflake table: SALES_DATA_TRANSFORMED")
 print("Total rows:", df_transformed.count())
 ```
 
 ---
 
-## 📊 Step 4: Power BI Visualization
+##  Step 4: Power BI Visualization
 
 Finally, connect **Power BI Desktop** to **Snowflake** using the **Snowflake Connector**:
 
@@ -169,14 +169,14 @@ Finally, connect **Power BI Desktop** to **Snowflake** using the **Snowflake Con
 5. Load data and start building visuals.
 
 ### Example Dashboards
-- 📈 **Total Sales & Profit by Region**
-- 🧾 **Top Customers by Discounted Sales**
-- 🗓️ **Monthly Sales Trends**
-- 💰 **Profit Margin Analysis**
+-  **Total Sales & Profit by Region**
+-  **Top Customers by Discounted Sales**
+-  **Monthly Sales Trends**
+-  **Profit Margin Analysis**
 
 ---
 
-## ✅ Final Data Pipeline Summary
+##  Final Data Pipeline Summary
 
 | Step | Tool | Purpose |
 |------|------|----------|
@@ -196,7 +196,4 @@ Finally, connect **Power BI Desktop** to **Snowflake** using the **Snowflake Con
 
 ---
 
-**Author:** Vineeth Mani  
-**Role:** Data Engineer, ItTechGenie Retail  
-**Date:** October 2025  
-**Technologies Used:** Azure Blob Storage • Snowflake • Snowpark (Python) • Databricks • Power BI
+
