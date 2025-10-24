@@ -201,7 +201,7 @@ Finally, connect **Power BI Desktop** to **Snowflake** using the **Snowflake Con
 
 
 
-## 🚀 Key Takeaways
+##  Key Takeaways
 
 - **Snowpark** allows you to perform **server-side data transformations** without moving data outside Snowflake.
 - **Azure + Snowflake** integration provides a **secure, scalable ingestion** pipeline.
