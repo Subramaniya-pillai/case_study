@@ -187,6 +187,20 @@ Finally, connect **Power BI Desktop** to **Snowflake** using the **Snowflake Con
 
 ---
 
+
+## Visualization Output
+
+<img width="505" height="337" alt="image" src="https://github.com/user-attachments/assets/a03ad7b8-dc90-4274-977a-6cc0b8a2e4c6" /> 
+
+
+<img width="505" height="337" alt="image" src="https://github.com/user-attachments/assets/d6b0931a-cb48-4fca-b2d3-09b4b715f2d6" />
+
+
+<img width="619" height="370" alt="image" src="https://github.com/user-attachments/assets/6257856b-6966-4529-9266-354149ab7d7d" />
+
+
+
+
 ## 🚀 Key Takeaways
 
 - **Snowpark** allows you to perform **server-side data transformations** without moving data outside Snowflake.
